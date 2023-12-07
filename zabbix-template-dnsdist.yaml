@@ -1,43 +1,35 @@
 zabbix_export:
   version: '6.0'
-  date: '2023-07-18T07:42:22Z'
+  date: '2023-12-07T12:54:43Z'
   groups:
-    -
-      uuid: 7df96b18c230490a9a0a9e2307226338
+    - uuid: 7df96b18c230490a9a0a9e2307226338
       name: Templates
   templates:
-    -
-      uuid: 6b5b24c1543649c2b5bbb0e23bc10db7
+    - uuid: 6b5b24c1543649c2b5bbb0e23bc10db7
       template: 'Templates - dnsdist'
       name: 'Templates - dnsdist'
       groups:
-        -
-          name: Templates
+        - name: Templates
       items:
-        -
-          uuid: f84887ab7c2e4d909b2de243bf375eee
+        - uuid: f84887ab7c2e4d909b2de243bf375eee
           name: acl-drops
           type: DEPENDENT
           key: dnsdist.acl-drops
           delay: '0'
           description: 'The number of packets (or TCP messages) dropped because of the ACL. If a packet or message is dropped, it is not counted in the queries statistic.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "acl-drops")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: c9bc792d0f0848d7ac2f77a5987552bb
+        - uuid: c9bc792d0f0848d7ac2f77a5987552bb
           name: cache-hits
           type: DEPENDENT
           key: dnsdist.cache-hits
@@ -45,22 +37,18 @@ zabbix_export:
           units: qps
           description: 'Number of times a response was sent using data found in the packet cache.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "cache-hits")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 5c9d89fb429145938af779a643d7822e
+        - uuid: 5c9d89fb429145938af779a643d7822e
           name: cache-misses
           type: DEPENDENT
           key: dnsdist.cache-misses
@@ -68,66 +56,54 @@ zabbix_export:
           units: qps
           description: 'Number of times an answer was not found in the packet cache. Only counted if a packet cache was setup for the selected pool.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "cache-misses")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4e24a6d07c064d78acbad8d0d61a4250
+        - uuid: 4e24a6d07c064d78acbad8d0d61a4250
           name: cpu-iowait
           type: DEPENDENT
           key: dnsdist.cpu-iowait
           delay: '0'
           description: 'Time spent waiting for I/O to complete by the whole system, in units of USER_HZ.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "cpu-iowait")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: d13eb091784a4b96b9e9db7f0bb0c94d
+        - uuid: d13eb091784a4b96b9e9db7f0bb0c94d
           name: cpu-steal
           type: DEPENDENT
           key: dnsdist.cpu-steal
           delay: '0'
           description: 'Stolen time, which is the time spent by the whole system in other operating systems when running in a virtualized environment, in units of USER_HZ.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "cpu-steal")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: b0151ca663c549b1b7921973987f7c4e
+        - uuid: b0151ca663c549b1b7921973987f7c4e
           name: cpu-sys-msec
           type: DEPENDENT
           key: dnsdist.cpu-sys-msec
@@ -135,22 +111,18 @@ zabbix_export:
           units: ms
           description: 'Milliseconds spent by dnsdist in the “system” state.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "cpu-sys-msec")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 9c6088c5f86a49ad998626f80a77cb4d
+        - uuid: 9c6088c5f86a49ad998626f80a77cb4d
           name: cpu-user-msec
           type: DEPENDENT
           key: dnsdist.cpu-user-msec
@@ -158,198 +130,162 @@ zabbix_export:
           units: ms
           description: 'Milliseconds spent by dnsdist in the “user” state.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "cpu-user-msec")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: e10a2e7ae9124da2977f9ca2761704fa
+        - uuid: e10a2e7ae9124da2977f9ca2761704fa
           name: doh-query-pipe-full
           type: DEPENDENT
           key: dnsdist.doh-query-pipe-full
           delay: '0'
           description: 'Number of queries dropped because the internal DoH pipe was full.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "doh-query-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 807c262eefd64bb9b99cc4515c7b3e84
+        - uuid: 807c262eefd64bb9b99cc4515c7b3e84
           name: doh-response-pipe-full
           type: DEPENDENT
           key: dnsdist.doh-response-pipe-full
           delay: '0'
           description: 'Number of responses dropped because the internal DoH pipe was full.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "doh-response-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: eb33216716fa4d129ac677ae789459f8
+        - uuid: eb33216716fa4d129ac677ae789459f8
           name: downstream-send-errors
           type: DEPENDENT
           key: dnsdist.downstream-send-errors
           delay: '0'
           description: 'Number of errors when sending a query to a backend.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "downstream-send-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 148cb5d0d6a44a749ea0e9fe81cb8b1c
+        - uuid: 148cb5d0d6a44a749ea0e9fe81cb8b1c
           name: downstream-timeouts
           type: DEPENDENT
           key: dnsdist.downstream-timeouts
           delay: '0'
           description: 'Number of queries not answer in time by a backend.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "downstream-timeouts")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 79b98297c04c4f2ba35c6143680d9967
+        - uuid: 79b98297c04c4f2ba35c6143680d9967
           name: dyn-block-nmg-size
           type: DEPENDENT
           key: dnsdist.dyn-block-nmg-size
           delay: '0'
           description: 'Number of dynamic blocks entries.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "dyn-block-nmg-size")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: adb3905358af4b9e82b6191b5fe9560a
+        - uuid: adb3905358af4b9e82b6191b5fe9560a
           name: dyn-blocked
           type: DEPENDENT
           key: dnsdist.dyn-blocked
           delay: '0'
           description: 'Number of queries dropped because of a dynamic block.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "dyn-blocked")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 74247be362924dac923842b2264022a9
+        - uuid: 74247be362924dac923842b2264022a9
           name: empty-queries
           type: DEPENDENT
           key: dnsdist.empty-queries
           delay: '0'
           description: 'Number of empty queries received from clients. Every empty-query is also counted as a query.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "empty-queries")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 87dffaa1653345d6b444bfddd7352278
+        - uuid: 87dffaa1653345d6b444bfddd7352278
           name: fd-usage
           type: DEPENDENT
           key: dnsdist.fd-usage
           delay: '0'
           description: 'Number of currently used file descriptors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "fd-usage")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 3940efd9a04e4d199557501652458ad9
+        - uuid: 3940efd9a04e4d199557501652458ad9
           name: frontend-noerror
           type: DEPENDENT
           key: dnsdist.frontend-noerror
@@ -357,22 +293,18 @@ zabbix_export:
           units: qps
           description: 'Number of NoError answers sent to clients.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "frontend-noerror")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 3d8ee282e04c4d67b9e95e0cf140b221
+        - uuid: 3d8ee282e04c4d67b9e95e0cf140b221
           name: frontend-nxdomain
           type: DEPENDENT
           key: dnsdist.frontend-nxdomain
@@ -380,22 +312,18 @@ zabbix_export:
           units: qps
           description: 'Number of NXDomain answers sent to clients.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "frontend-nxdomain")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 614fcf79444f40bea2c8b1cb1b378a32
+        - uuid: 614fcf79444f40bea2c8b1cb1b378a32
           name: frontend-servfail
           type: DEPENDENT
           key: dnsdist.frontend-servfail
@@ -403,22 +331,18 @@ zabbix_export:
           units: qps
           description: 'Number of ServFail answers sent to clients.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "frontend-servfail")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 76f93145f866428287125c25c83e0697
+        - uuid: 76f93145f866428287125c25c83e0697
           name: latency-avg100
           type: DEPENDENT
           key: dnsdist.latency-avg100
@@ -426,22 +350,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency in microseconds of the last 100 packets'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-avg100")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 3365e5c06ff749b48291612f0a60e972
+        - uuid: 3365e5c06ff749b48291612f0a60e972
           name: latency-avg1000
           type: DEPENDENT
           key: dnsdist.latency-avg1000
@@ -449,22 +369,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency in microseconds of the last 1000 packets.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-avg1000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: e00ce517ce6c4beeac033999f9b9db12
+        - uuid: e00ce517ce6c4beeac033999f9b9db12
           name: latency-avg10000
           type: DEPENDENT
           key: dnsdist.latency-avg10000
@@ -472,22 +388,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency in microseconds of the last 10000 packets.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-avg10000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: d8117801bd4341e1b3a1ac1c9e4df1d6
+        - uuid: d8117801bd4341e1b3a1ac1c9e4df1d6
           name: latency-avg100000
           type: DEPENDENT
           key: dnsdist.latency-avg100000
@@ -495,22 +407,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency in microseconds of the last 100000 packets.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "doh-query-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: ef574c9452a9409fa9a225d892751ea9
+        - uuid: ef574c9452a9409fa9a225d892751ea9
           name: latency-avg1000000
           type: DEPENDENT
           key: dnsdist.latency-avg1000000
@@ -518,66 +426,54 @@ zabbix_export:
           units: μs
           description: 'Average response latency in microseconds of the last 1000000 packets.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-avg1000000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 9b8bbec0864f475786c5615b339c1618
+        - uuid: 9b8bbec0864f475786c5615b339c1618
           name: latency-bucket
           type: DEPENDENT
           key: dnsdist.latency-bucket
           delay: '0'
           description: 'Histogram of response time latencies.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-bucket")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 799b8738a6f4499e88efdad029c2b95f
+        - uuid: 799b8738a6f4499e88efdad029c2b95f
           name: latency-count
           type: DEPENDENT
           key: dnsdist.latency-count
           delay: '0'
           description: 'Number of queries contributing to response time histogram and latency sum.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-count")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: c16a22a94a564990a7bdaaaf53c08b10
+        - uuid: c16a22a94a564990a7bdaaaf53c08b10
           name: latency-doh-avg100
           type: DEPENDENT
           key: dnsdist.latency-doh-avg100
@@ -585,66 +481,54 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 100 packets received over DoH.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-doh-avg100")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: cdb95409169e44a3957072aadf5616bc
+        - uuid: cdb95409169e44a3957072aadf5616bc
           name: latency-slow
           type: DEPENDENT
           key: dnsdist.latency-slow
           delay: '0'
           description: 'Number of queries answered in more than 1 second.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-slow")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 0abd4dc3b6034ba7b88203f60de93351
+        - uuid: 0abd4dc3b6034ba7b88203f60de93351
           name: latency-sum
           type: DEPENDENT
           key: dnsdist.latency-sum
           delay: '0'
           description: 'Total response time of all queries combined in milliseconds since the start of dnsdist. Can be used to calculate the average response time over all queries.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-slow")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 8603d63670a94e6095da87f34239c8b4
+        - uuid: 8603d63670a94e6095da87f34239c8b4
           name: latency0-1
           type: DEPENDENT
           key: dnsdist.latency0-1
@@ -652,22 +536,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries answered in less than 1 ms.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency0-1")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: ae793472b9b64bdfad5954a59ed689d0
+        - uuid: ae793472b9b64bdfad5954a59ed689d0
           name: latency1-10
           type: DEPENDENT
           key: dnsdist.latency1-10
@@ -675,22 +555,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries answered in 1-10 ms.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency1-10")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4d2f4b0efcd2443a92c6037a7248c39b
+        - uuid: 4d2f4b0efcd2443a92c6037a7248c39b
           name: latency10-50
           type: DEPENDENT
           key: dnsdist.latency10-50
@@ -698,22 +574,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries answered in 10-50 ms.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency10-50")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 9ac2a3c7d0164e1f8e823c3dceab2287
+        - uuid: 9ac2a3c7d0164e1f8e823c3dceab2287
           name: latency50-100
           type: DEPENDENT
           key: dnsdist.latency50-100
@@ -721,22 +593,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries answered in 50-100 ms.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency50-100")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: a00ba2eb454840eea58af8ad23484640
+        - uuid: a00ba2eb454840eea58af8ad23484640
           name: latency100-1000
           type: DEPENDENT
           key: dnsdist.latency100-1000
@@ -744,22 +612,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries answered in 100-1000 ms.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency100-1000")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: d989f0a427274b469498c14fb75cf2cc
+        - uuid: d989f0a427274b469498c14fb75cf2cc
           name: no-policy
           type: DEPENDENT
           key: dnsdist.no-policy
@@ -767,22 +631,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries dropped because no server was available.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "no-policy")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 96e3283920c6407e86f5ada950239de6
+        - uuid: 96e3283920c6407e86f5ada950239de6
           name: noncompliant-queries
           type: DEPENDENT
           key: dnsdist.noncompliant-queries
@@ -790,22 +650,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries dropped as non-compliant.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "noncompliant-queries")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 7c7e56432039450795784078db86c6c6
+        - uuid: 7c7e56432039450795784078db86c6c6
           name: noncompliant-responses
           type: DEPENDENT
           key: dnsdist.noncompliant-responses
@@ -813,22 +669,18 @@ zabbix_export:
           units: qps
           description: 'Number of answers from a backend dropped as non-compliant.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "noncompliant-responses")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 72a6f7d95cf54b37bcc4809f2fcb3a51
+        - uuid: 72a6f7d95cf54b37bcc4809f2fcb3a51
           name: queries
           type: DEPENDENT
           key: dnsdist.queries
@@ -836,22 +688,18 @@ zabbix_export:
           units: qps
           description: 'Number of received queries.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "queries")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: a4d2ab0a435540aeb212e6e0b3bd7da7
+        - uuid: a4d2ab0a435540aeb212e6e0b3bd7da7
           name: rdqueries
           type: DEPENDENT
           key: dnsdist.rdqueries
@@ -859,44 +707,36 @@ zabbix_export:
           units: qps
           description: 'Number of received queries with the recursion desired bit set.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "rdqueries")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: b48a600e7bd1442eb3eedd42cfe2579e
+        - uuid: b48a600e7bd1442eb3eedd42cfe2579e
           name: real-memory-usage
           type: DEPENDENT
           key: dnsdist.real-memory-usage
           delay: '0'
           description: 'Current memory usage.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "real-memory-usage")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: dbb0b82e28fc4c2389e6554a1a4de6f7
+        - uuid: dbb0b82e28fc4c2389e6554a1a4de6f7
           name: responses
           type: DEPENDENT
           key: dnsdist.responses
@@ -904,22 +744,18 @@ zabbix_export:
           units: qps
           description: 'Number of responses received from backends. Note! This is not the number of responses sent to clients. To get that number, add ‘cache-hits’ and ‘responses’.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "responses")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: ee779f691c5748e9a0f41c5b47a96c15
+        - uuid: ee779f691c5748e9a0f41c5b47a96c15
           name: rule-drop
           type: DEPENDENT
           key: dnsdist.rule-drop
@@ -927,22 +763,18 @@ zabbix_export:
           units: qps
           description: 'Number of queries dropped because of a rule.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "rule-drop")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: e570ac8b3ba54bd0ad37bbfa260e46da
+        - uuid: e570ac8b3ba54bd0ad37bbfa260e46da
           name: rule-nxdomain
           type: DEPENDENT
           key: dnsdist.rule-nxdomain
@@ -950,22 +782,18 @@ zabbix_export:
           units: qps
           description: 'Number of NXDomain answers returned because of a rule.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "rule-nxdomain")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: e05b96141fef4269adcfde2ad8ceb6a8
+        - uuid: e05b96141fef4269adcfde2ad8ceb6a8
           name: rule-refused
           type: DEPENDENT
           key: dnsdist.rule-refused
@@ -973,22 +801,18 @@ zabbix_export:
           units: qps
           description: 'Number of Refused answers returned because of a rule.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "rule-refused")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: da597bed362c41dbb1adb719441dc0ac
+        - uuid: da597bed362c41dbb1adb719441dc0ac
           name: rule-servfail
           type: DEPENDENT
           key: dnsdist.rule-servfail
@@ -996,22 +820,18 @@ zabbix_export:
           units: qps
           description: 'Number of ServFail answers returned because of a rule.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == &quot;rule-servfail&quot;)].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: e6f2c8c9080f43a38da7bb07d2c849e3
+        - uuid: e6f2c8c9080f43a38da7bb07d2c849e3
           name: rule-truncated
           type: DEPENDENT
           key: dnsdist.rule-truncated
@@ -1019,22 +839,18 @@ zabbix_export:
           units: qps
           description: 'Number of truncated answers returned because of a rule.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "rule-truncated")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 9c104722f1a24fca88480d4a0de40d0a
+        - uuid: 9c104722f1a24fca88480d4a0de40d0a
           name: security-status
           type: DEPENDENT
           key: dnsdist.security-status
@@ -1049,54 +865,43 @@ zabbix_export:
           valuemap:
             name: 'Security Status'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "security-status")].value.first()'
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
           triggers:
-            -
-              uuid: d0942b8f53fa48228109d4b2041d6eee
+            - uuid: d0942b8f53fa48228109d4b2041d6eee
               expression: 'last(/Templates - dnsdist/dnsdist.security-status)=0'
               name: 'dnsdist security status unknown'
               priority: INFO
               tags:
-                -
-                  tag: component
+                - tag: component
                   value: dnsdist
-            -
-              uuid: 1ab2a492935f4bf68c5fe37ee890a9e4
+            - uuid: 1ab2a492935f4bf68c5fe37ee890a9e4
               expression: 'last(/Templates - dnsdist/dnsdist.security-status)=3'
               name: 'dnsdist upgrade is mandatory'
-              priority: HIGH
+              priority: WARNING
               dependencies:
-                -
-                  name: 'dnsdist upgrade is recommended'
+                - name: 'dnsdist upgrade is recommended'
                   expression: 'last(/Templates - dnsdist/dnsdist.security-status)=2'
               tags:
-                -
-                  tag: component
+                - tag: component
                   value: dnsdist
-            -
-              uuid: ff23ac4adeff463fae165cb1615ff0fd
+            - uuid: ff23ac4adeff463fae165cb1615ff0fd
               expression: 'last(/Templates - dnsdist/dnsdist.security-status)=2'
               name: 'dnsdist upgrade is recommended'
               priority: WARNING
               dependencies:
-                -
-                  name: 'dnsdist security status unknown'
+                - name: 'dnsdist security status unknown'
                   expression: 'last(/Templates - dnsdist/dnsdist.security-status)=0'
               tags:
-                -
-                  tag: component
+                - tag: component
                   value: dnsdist
-        -
-          uuid: f6b7df6fdb95417f86abbeb983d3067a
+        - uuid: f6b7df6fdb95417f86abbeb983d3067a
           name: self-answered
           type: DEPENDENT
           key: dnsdist.self-answered
@@ -1104,44 +909,36 @@ zabbix_export:
           units: qps
           description: 'Number of self-answered responses.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "self-answered")].value.first()'
-            -
-              type: CHANGE_PER_SECOND
+            - type: CHANGE_PER_SECOND
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: b8504dfa6b434052b5450f9ac6d3bbd1
+        - uuid: b8504dfa6b434052b5450f9ac6d3bbd1
           name: servfail-responses
           type: DEPENDENT
           key: dnsdist.servfail-responses
           delay: '0'
           description: 'Number of servfail answers received from backends.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "servfail-responses")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 8303e6a5b26d49e481be62d6c91fd7e1
+        - uuid: 8303e6a5b26d49e481be62d6c91fd7e1
           name: latency-doh-avg1000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-doh-avg1000]'
@@ -1149,22 +946,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 1000 packets received over DoH.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-doh-avg1000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4edec22f5bcf41b18a814ec5d86b4225
+        - uuid: 4edec22f5bcf41b18a814ec5d86b4225
           name: latency-doh-avg10000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-doh-avg10000]'
@@ -1172,45 +965,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 10000 packets received over DoH.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-doh-avg10000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 5e9e361c3ca64f7ca7c8a064a7dd3f1a
-          name: latency-doh-avg100000
-          type: DEPENDENT
-          key: 'dnsdist.statistics[latency-doh-avg100000]'
-          delay: '0'
-          units: μs
-          description: 'Average response latency, in microseconds, of the last 100000 packets received over DoH.'
-          preprocessing:
-            -
-              type: JSONPATH
-              parameters:
-                - '$[?(@.name == "latency-doh-avg100000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
-              parameters:
-                - ''
-          master_item:
-            key: dnsdist.stats
-          tags:
-            -
-              tag: component
-              value: dnsdist
-        -
-          uuid: 1118720af43d468d87daefaf07519305
+        - uuid: 1118720af43d468d87daefaf07519305
           name: latency-dot-avg100
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-dot-avg100]'
@@ -1218,22 +984,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 100 packets received over DoT.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-dot-avg100")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4576756a60724264a473da8317ad921f
+        - uuid: 4576756a60724264a473da8317ad921f
           name: latency-dot-avg1000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-dot-avg1000]'
@@ -1241,22 +1003,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 1000 packets received over DoT.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-dot-avg1000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 2f630e8d02d840e7b81ec061e9cf14cb
+        - uuid: 2f630e8d02d840e7b81ec061e9cf14cb
           name: latency-dot-avg10000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-dot-avg10000]'
@@ -1264,45 +1022,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 10000 packets received over DoT.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-dot-avg10000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 3faf1e94c87e49868af48057b4f1b4c1
-          name: latency-dot-avg100000
-          type: DEPENDENT
-          key: 'dnsdist.statistics[latency-dot-avg100000]'
-          delay: '0'
-          units: μs
-          description: 'Average response latency, in microseconds, of the last 100000 packets received over DoT.'
-          preprocessing:
-            -
-              type: JSONPATH
-              parameters:
-                - '$[?(@.name == "latency-dot-avg100000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
-              parameters:
-                - ''
-          master_item:
-            key: dnsdist.stats
-          tags:
-            -
-              tag: component
-              value: dnsdist
-        -
-          uuid: d205051595844cdba1607b87e69cb14a
+        - uuid: d205051595844cdba1607b87e69cb14a
           name: latency-dot-avg1000000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-dot-avg1000000]'
@@ -1310,22 +1041,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 1000000 packets received over DoT.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-dot-avg1000000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4244a6e9251f48c4ad291dfb06ea5388
+        - uuid: 4244a6e9251f48c4ad291dfb06ea5388
           name: latency-tcp-avg100
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-tcp-avg100]'
@@ -1333,22 +1060,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 100 packets received over TCP.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-tcp-avg100")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 60994265e7ce4f23950484ca521e16e2
+        - uuid: 60994265e7ce4f23950484ca521e16e2
           name: latency-tcp-avg1000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-tcp-avg1000]'
@@ -1356,22 +1079,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 1000 packets received over TCP.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-tcp-avg1000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: cf4edcd667774a6db6c981ebb92f9f21
+        - uuid: cf4edcd667774a6db6c981ebb92f9f21
           name: latency-tcp-avg10000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-tcp-avg10000]'
@@ -1379,45 +1098,18 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 10000 packets received over TCP.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-tcp-avg10000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 5fa881290e864d5da270c6364ccc38d9
-          name: latency-tcp-avg100000
-          type: DEPENDENT
-          key: 'dnsdist.statistics[latency-tcp-avg100000]'
-          delay: '0'
-          units: μs
-          description: 'Average response latency, in microseconds, of the last 100000 packets received over TCP.'
-          preprocessing:
-            -
-              type: JSONPATH
-              parameters:
-                - '$[?(@.name == "latency-tcp-avg100000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
-              parameters:
-                - ''
-          master_item:
-            key: dnsdist.stats
-          tags:
-            -
-              tag: component
-              value: dnsdist
-        -
-          uuid: a85bcb5c932547aabc28373feedc4ea9
+        - uuid: a85bcb5c932547aabc28373feedc4ea9
           name: latency-tcp-avg1000000
           type: DEPENDENT
           key: 'dnsdist.statistics[latency-tcp-avg1000000]'
@@ -1425,66 +1117,54 @@ zabbix_export:
           units: μs
           description: 'Average response latency, in microseconds, of the last 1000000 packets received over TCP.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-tcp-avg1000000")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4e8a531b06424acdae26c906c13d4f29
+        - uuid: 4e8a531b06424acdae26c906c13d4f29
           name: outgoing-doh-query-pipe-full
           type: DEPENDENT
           key: 'dnsdist.statistics[outgoing-doh-query-pipe-full]'
           delay: '0'
           description: 'Number of outgoing DoH queries dropped because the internal pipe used to distribute queries was full.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "outgoing-doh-query-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 56573947e07748759173d27bf873c5f5
+        - uuid: 56573947e07748759173d27bf873c5f5
           name: proxy-protocol-invalid
           type: DEPENDENT
           key: 'dnsdist.statistics[proxy-protocol-invalid]'
           delay: '0'
           description: 'Number of queries dropped because of an invalid Proxy Protocol header.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "latency-tcp-avg100")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: a0f896ba755d4b68a006c71d8fac098f
+        - uuid: a0f896ba755d4b68a006c71d8fac098f
           name: 'Raw dnsdist statistics'
           type: HTTP_AGENT
           key: dnsdist.stats
@@ -1492,345 +1172,282 @@ zabbix_export:
           value_type: TEXT
           url: 'http://{$DNSDIST.WEBSERVER.IP}:{$DNSDIST.WEBSERVER.PORT}/api/v1/servers/localhost/statistics'
           headers:
-            -
-              name: X-API-Key
+            - name: X-API-Key
               value: '{$DNSDIST.APIKEY}'
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 7566c7897c84471b97dad977c68baf6b
+        - uuid: 7566c7897c84471b97dad977c68baf6b
           name: tcp-cross-protocol-query-pipe-full
           type: DEPENDENT
           key: dnsdist.tcp-cross-protocol-query-pipe-full
           delay: '0'
           description: 'Number of TCP cross-protocol queries dropped because the internal pipe used to distribute queries was full.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "tcp-cross-protocol-query-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: cf009394be584c13b069a31609b6639b
+        - uuid: cf009394be584c13b069a31609b6639b
           name: tcp-cross-protocol-response-pipe-full
           type: DEPENDENT
           key: dnsdist.tcp-cross-protocol-response-pipe-full
           delay: '0'
           description: 'Number of TCP cross-protocol responses dropped because the internal pipe used to distribute queries was full.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "tcp-cross-protocol-response-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 31d4b6a825ad42969d90a5429216342e
+        - uuid: 31d4b6a825ad42969d90a5429216342e
           name: tcp-listen-overflows
           type: DEPENDENT
           key: dnsdist.tcp-listen-overflows
           delay: '0'
           description: 'From /proc/net/netstat ListenOverflows.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "tcp-listen-overflows")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: cf8a112cca954fc1ba04a754f405f3c9
+        - uuid: cf8a112cca954fc1ba04a754f405f3c9
           name: tcp-query-pipe-full
           type: DEPENDENT
           key: dnsdist.tcp-query-pipe-full
           delay: '0'
           description: 'Number of TCP queries dropped because the internal pipe used to distribute queries was full.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "tcp-query-pipe-full")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: d2ddfbef6b184ad08f8f982c26a1cf51
+        - uuid: d2ddfbef6b184ad08f8f982c26a1cf51
           name: trunc-failures
           type: DEPENDENT
           key: dnsdist.trunc-failures
           delay: '0'
           description: 'Number of errors encountered while truncating an answer.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "trunc-failures")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 0bcce9e83e40408e9d3e25f1e40d8b77
+        - uuid: 0bcce9e83e40408e9d3e25f1e40d8b77
           name: udp-in-csum-errors
           type: DEPENDENT
           key: dnsdist.udp-in-csum-errors
           delay: '0'
           description: 'From /proc/net/snmp InErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp-in-csum-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 6bfa174a57c04c9890250bbd2445e2eb
+        - uuid: 6bfa174a57c04c9890250bbd2445e2eb
           name: udp-in-errors
           type: DEPENDENT
           key: dnsdist.udp-in-errors
           delay: '0'
           description: 'From /proc/net/snmp InErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp-in-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 1517174ac59e46079c0c429386fb0afa
+        - uuid: 1517174ac59e46079c0c429386fb0afa
           name: udp-noport-errors
           type: DEPENDENT
           key: dnsdist.udp-noport-errors
           delay: '0'
           description: 'From /proc/net/snmp NoPorts.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp-noport-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 7f73f3b5cce74697bad893b660537cc3
+        - uuid: 7f73f3b5cce74697bad893b660537cc3
           name: udp-recvbuf-errors
           type: DEPENDENT
           key: dnsdist.udp-recvbuf-errors
           delay: '0'
           description: 'From /proc/net/snmp RcvbufErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp-recvbuf-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 4fe6f76ff6c249af828da99a52f84b6b
+        - uuid: 4fe6f76ff6c249af828da99a52f84b6b
           name: udp-sndbuf-errors
           type: DEPENDENT
           key: dnsdist.udp-sndbuf-errors
           delay: '0'
           description: 'From /proc/net/snmp SndbufErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp-sndbuf-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: ddd52b95dcfe4e3b801eee52d09bc07e
+        - uuid: ddd52b95dcfe4e3b801eee52d09bc07e
           name: udp6-in-csum-errors
           type: DEPENDENT
           key: dnsdist.udp6-in-csum-errors
           delay: '0'
           description: 'From /proc/net/snmp6 InErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp6-in-csum-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: aa1e0eca7b9d4b84bf841d0b5fc8118a
+        - uuid: aa1e0eca7b9d4b84bf841d0b5fc8118a
           name: udp6-in-errors
           type: DEPENDENT
           key: dnsdist.udp6-in-errors
           delay: '0'
           description: 'From /proc/net/snmp6 InErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp6-in-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 715773863c9b4ad4a60c23385b0bb615
+        - uuid: 715773863c9b4ad4a60c23385b0bb615
           name: udp6-noport-errors
           type: DEPENDENT
           key: dnsdist.udp6-noport-errors
           delay: '0'
           description: 'From /proc/net/snmp6 NoPorts.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp6-noport-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 0e468654899b4febba8d108ceecd55a4
+        - uuid: 0e468654899b4febba8d108ceecd55a4
           name: udp6-recvbuf-errors
           type: DEPENDENT
           key: dnsdist.udp6-recvbuf-errors
           delay: '0'
           description: 'From /proc/net/snmp6 RcvbufErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp6-recvbuf-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 59fa60f3206442c5ba06373aea60c837
+        - uuid: 59fa60f3206442c5ba06373aea60c837
           name: udp6-sndbuf-errors
           type: DEPENDENT
           key: dnsdist.udp6-sndbuf-errors
           delay: '0'
           description: 'From /proc/net/snmp6 SndbufErrors.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "udp6-sndbuf-errors")].value.first()'
-            -
-              type: SIMPLE_CHANGE
+            - type: SIMPLE_CHANGE
               parameters:
                 - ''
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 1bceeb22377c4ed9b550277c953180c7
+        - uuid: 1bceeb22377c4ed9b550277c953180c7
           name: uptime
           type: DEPENDENT
           key: dnsdist.uptime
@@ -1838,183 +1455,149 @@ zabbix_export:
           units: s
           description: 'Uptime of the dnsdist process, in seconds.'
           preprocessing:
-            -
-              type: JSONPATH
+            - type: JSONPATH
               parameters:
                 - '$[?(@.name == "uptime")].value.first()'
           master_item:
             key: dnsdist.stats
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
-        -
-          uuid: 106aa5e50359436faedd890bbc808050
+        - uuid: 106aa5e50359436faedd890bbc808050
           name: 'dnsdist service is running'
           type: ZABBIX_ACTIVE
           key: 'proc.num[dnsdist]'
           tags:
-            -
-              tag: component
+            - tag: component
               value: dnsdist
           triggers:
-            -
-              uuid: 838ec09dc60341019dc0025f4b401a18
+            - uuid: 838ec09dc60341019dc0025f4b401a18
               expression: 'last(/Templates - dnsdist/proc.num[dnsdist])=0'
               name: 'dnsdist service is not running'
               priority: HIGH
               tags:
-                -
-                  tag: component
+                - tag: component
                   value: dnsdist
       macros:
-        -
-          macro: '{$DNSDIST.APIKEY}'
+        - macro: '{$DNSDIST.APIKEY}'
           value: changeme
-        -
-          macro: '{$DNSDIST.WEBSERVER.IP}'
+        - macro: '{$DNSDIST.WEBSERVER.IP}'
           value: 127.0.0.1
-        -
-          macro: '{$DNSDIST.WEBSERVER.PORT}'
+        - macro: '{$DNSDIST.WEBSERVER.PORT}'
           value: '8083'
       valuemaps:
-        -
-          uuid: 6c83f52295db43dc86416bd0b5819f05
+        - uuid: 6c83f52295db43dc86416bd0b5819f05
           name: 'Security Status'
           mappings:
-            -
-              value: '0'
+            - value: '0'
               newvalue: 'Unknown status or unreleased version'
-            -
-              value: '1'
+            - value: '1'
               newvalue: OK
-            -
-              value: '2'
+            - value: '2'
               newvalue: 'Upgrade recommended'
-            -
-              value: '3'
+            - value: '3'
               newvalue: 'Upgrade mandatory'
   graphs:
-    -
-      uuid: 1f399fb01d7b4b9d8f79eb7451817e72
+    - uuid: 1f399fb01d7b4b9d8f79eb7451817e72
       name: 'dnsdist - Cache'
       type: STACKED
       graph_items:
-        -
-          color: 199C0D
+        - color: 199C0D
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.cache-hits
-        -
-          sortorder: '1'
+        - sortorder: '1'
           color: F63100
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.cache-misses
-    -
-      uuid: b3fe1002299a48ca9f5da4f158e0ac57
+    - uuid: b3fe1002299a48ca9f5da4f158e0ac57
       name: 'dnsdist - Latency'
       graph_items:
-        -
-          color: 199C0D
+        - color: 199C0D
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.latency-avg100
-        -
-          sortorder: '1'
+        - sortorder: '1'
           color: F63100
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.latency-avg1000
-        -
-          sortorder: '2'
+        - sortorder: '2'
           color: 2774A4
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.latency-avg10000
-        -
-          sortorder: '3'
+        - sortorder: '3'
           color: F7941D
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.latency-avg100000
-        -
-          sortorder: '4'
+        - sortorder: '4'
           color: FC6EA3
           calc_fnc: MAX
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.latency-avg1000000
-    -
-      uuid: d553cb6fa55743eb92579d91bb36208c
+    - uuid: d553cb6fa55743eb92579d91bb36208c
       name: 'dnsdist - Queries & Answers'
       graph_items:
-        -
-          color: 199C0D
+        - color: 199C0D
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.queries
-        -
-          sortorder: '1'
+        - sortorder: '1'
           color: F63100
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.frontend-noerror
-        -
-          sortorder: '2'
+        - sortorder: '2'
           color: 2774A4
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.frontend-nxdomain
-        -
-          sortorder: '3'
+        - sortorder: '3'
           color: F7941D
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.frontend-servfail
-    -
-      uuid: ce1838985d3644318adeffa510426ca6
+    - uuid: ce1838985d3644318adeffa510426ca6
       name: 'dnsdist - Rules'
       graph_items:
-        -
-          color: 199C0D
+        - color: 199C0D
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.rule-drop
-        -
-          sortorder: '1'
+        - sortorder: '1'
           color: F63100
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.rule-nxdomain
-        -
-          sortorder: '2'
+        - sortorder: '2'
           color: 2774A4
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.rule-refused
-        -
-          sortorder: '3'
+        - sortorder: '3'
           color: F7941D
           calc_fnc: ALL
           item:
             host: 'Templates - dnsdist'
             key: dnsdist.rule-servfail
-        -
-          sortorder: '4'
+        - sortorder: '4'
           color: FC6EA3
           calc_fnc: ALL
           item:
